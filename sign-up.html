@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | ZillaCorp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <section id="header">
+        <a href="index.html"><img src="img/zlogo.png" class="logo" alt="ZillaCorp"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="Cart.html"><i class="far fa-shopping-bag"></i></a></li>
+            </ul>
+        </div>
+    </section>
+    <!-- Sign-Up Form Section -->
+    <section id="sign-up" class="section-p1">
+        <h2>Create Your Account</h2>
+        <form action="http://localhost:5000/register" method="POST" class="sign-up-form" id="signupForm">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" required>
+        
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        
+            <button type="submit" class="normal">Sign Up</button>
+        </form>        
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="/logo.png" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> 170 Lower Kabete, Nairobi, Kenya</p>
+            <p><strong>Phone:</strong> +254 760 456 345</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
