@@ -1,157 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Tech2etc Ecommerce Tutorial</title>
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
-        <link rel="stylesheet" href="style.css">
-        </head>
-        <body>
-            <section id="header">
-                <a href="#"><img src="img/zlogo.png" class="logo" alt=""></a>
-                <div>
-                    <ul id="navbar">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li id="lg-bag"><a class="active" href="Cart.html"><i class="far fa-shopping-bag"></i></a></li>
-                        <a href="#" id="close"><i class="far fa-times"></i></a>
-                    </ul>
-                </div>
-                <div id="mobile">
-                    <a href="Cart.html"><i class="far fa-shopping-bag"></i></a>
-                    <i id="bar" class="fas fa-outdent"></i>
-                </div>
-            </section>
-            <section id="page-header" class="about-header">
-                <h2>#let's_talk</h2>                
-                <p>LEAVE A MESSAGE, We love to hear from you!</p>               
-            </section>
-           <section id="cart" class="section-p1">
-            <table width="100%">
-                <thead>
-                    <tr>
-                        <td>Remove</td>
-                        <td>Image</td>
-                        <td>Product</td>
-                        <td>Price</td>
-                        <td>Quantity</td>
-                        <td>Subtotal</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="#"><i class="far fa-times-circle"></i></a></td>
-                        <td><img src="img/products/f1.jpg" alt=""></td>
-                        <td>Cartoon Astronaut T-Shirts</td>
-                        <td>$118.19</td>
-                        <td> <input type="number" value="1"></td>
-                        <td>$118.19</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#"><i class="far fa-times-circle"></i></a></td>
-                        <td><img src="img/products/f2.jpg" alt=""></td>
-                        <td>Cartoon Astronaut T-Shirts</td>
-                        <td>$118.19</td>
-                        <td> <input type="number" value="1"></td>
-                        <td>$118.19</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#"><i class="far fa-times-circle"></i></a></td>
-                        <td><img src="img/products/f3.jpg" alt=""></td>
-                        <td>Cartoon Astronaut T-Shirts</td>
-                        <td>$118.19</td>
-                        <td> <input type="number" value="1"></td>
-                        <td>$118.19</td>
-                    </tr>                  
-                </tbody>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zilla Ecommerce</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="header">
+        <a href="#"><img src="img/zlogo.png" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a class="active" href="Cart.html"><i class="far fa-shopping-bag"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="Cart.html"><i class="far fa-shopping-bag"></i></a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+    <section id="page-header" class="about-header">
+        <h2>#let's_talk</h2>
+        <p>LEAVE A MESSAGE, We love to hear from you!</p>               
+    </section>
+
+    <section id="cart" class="section-p1">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody id="cartItems"></tbody>
+        </table>
+    </section>
+
+    <section id="cart-add" class="section-p1">
+        <div id="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" placeholder="Enter Your Coupon">
+                <button class="normal">Apply</button>
+            </div>
+        </div>
+        <div id="Subtotal">
+            <h3>Cart Totals</h3>
+            <table>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td id="cartSubtotal">Kshs. 0.00</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong id="cartTotal">Kshs. 0.00</strong></td>
+                </tr>
             </table>
-           </section>
-           <section id="cart-add" class="section-p1">
-            <div id="coupon">
-                <h3> Apply Coupon</h3>
-                <div>
-                    <input type="text" placeholder="Enter Your Coupon">
-                    <button class="normal"> Apply</button>
+            <button class="normal">Proceed to checkout</button>
+        </div>            
+    </section>
+    
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="/logo.png" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong> 170 Lower Kabete, 5th street, Nairobi Kenya</p>
+            <p><strong>Phone:</strong> +254 760 456 345 /(+91) 01 2345 6789</p>
+            <p><strong>Hours:</strong> 10.00 - 18.00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest"></i>
+                    <i class="fab fa-youtube"></i>
                 </div>
             </div>
-            <div id="Subtotal">
-                <h3>Cart Totals</h3>
-                <table>
-                    <tr>
-                        <td>Cart Subtotal</td>
-                        <td>$ 335</td>
-                    </tr>
-                    <tr>
-                        <td>Shipping</td>
-                        <td>Free</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Total</strong></td>
-                        <td><strong>$ 335</strong></td>
-                    </tr>
-                </table>
-                <button class="normal">Proceed to checkout </button>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="img/pay/app.jpg" alt="">
+                <img src="img/pay/play.jpg" alt="">
             </div>
-           </section>
-           
-            <footer class="section-p1">
-                <div class="col">
-                    <img class="logo" src="/logo.png" alt="">
-                    <h4>Contact</h4>
-                    <p><strong>Address: </strong> 170 Lower Kabete, 5th street, Nairobi Kenya
-                    </p>
-                    <p><strong>Phone:</strong> +254 760 456 345 /(+91) 01 2345 6789</p>
-                    <p><strong>Hours:</strong>10.00 - 18.00, Mon - Sat</p>
-                    <div class="follow">
-                        <h4>Follow us</h4>
-                        <div class="icon">
-                            <i class="fab fa-facebook-f"></i>
-                            <i class="fab fa-twitter"></i>
-                            <i class="fab fa-instagram"></i>
-                            <i class="fab fa-pinterest"></i>
-                            <i class="fab fa-youtube"></i>"
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <h4>About</h4>
-                    <a href="#">About Us</a>
-                    <a href="#">Delivery Information</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms & Conditions</a>
-                    <a href="#">Contact Us</a>
-                </div>
-                <div class="col">
-                    <h4>My Account</h4>
-                    <a href="#">Sign In</a>
-                    <a href="#">View Cart</a>
-                    <a href="#">My Wishlist</a>
-                    <a href="#">Track My Order</a>
-                    <a href="#">Help</a>
-                </div>
-                <div class="col install">
-                    <h4>Install App</h4>
-                    <p>From App Store or Google Play</p>
-                    <div class="row">
-                        <img src="img/pay/app.jpg" alt="">
-                        <img src="img/pay/play.jpg" alt="">
-                    </div>
-                    <p> Secured Payment Gateways</p>
-                    <img src="img/pay/pay.png" alt="">
-                </div> 
-                <div class="copyright">
-                <p>@ 2024 , Tech2 etc - HTML CSS Ecommerce Template</p>
-            </div>
-                <div>
+            <p> Secured Payment Gateways</p>
+            <img src="img/pay/pay.png" alt="">
+        </div> 
+        <div class="copyright">
+            <p>@ 2024 Zilla Corp, A happy Customer is a Happy World</p>
+        </div>
+    </footer>
 
-                </div>
-            </footer>
+    <script>
+        // Function to load cart items from localStorage
+        function loadCart() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartTable = document.getElementById('cartItems');
+            let total = 0;
 
-                <script src="script.js"></script>
-        </body>
+            // Clear the current cart display
+            cartTable.innerHTML = '';
+
+            cartItems.forEach((item, index) => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+
+                const row = `
+                    <tr>
+                        <td><a href="#" onclick="removeFromCart(${index})"><i class="far fa-times-circle"></i></a></td>
+                        <td><img src="${item.image}" alt="${item.name}"></td>
+                        <td>${item.name}</td>
+                        <td>Kshs. ${item.price.toFixed(2)}</td>
+                        <td><input type="number" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)"></td>
+                        <td>Kshs. ${subtotal.toFixed(2)}</td>
+                    </tr>
+                `;
+                cartTable.innerHTML += row;
+            });
+
+            // Update cart totals
+            document.getElementById('cartSubtotal').innerText = `Kshs. ${total.toFixed(2)}`;
+            document.getElementById('cartTotal').innerText = `Kshs. ${total.toFixed(2)}`;
+        }
+
+        // Update quantity of items in the cart
+        function updateQuantity(index, newQuantity) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems[index].quantity = parseInt(newQuantity);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            loadCart(); // Reload the cart to update totals
+        }
+
+        // Remove item from cart
+        function removeFromCart(index) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            loadCart(); // Reload the cart to update totals
+        }
+
+        // Load the cart when the page loads
+        window.onload = loadCart;
+    </script>
+</body>
 </html>
