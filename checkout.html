@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | ZillaCorp</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <section id="header">
+        <a href="index.html"><img src="img/zlogo.png" class="logo" alt=""></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Checkout Section -->
+    <section id="checkout" class="section-p1">
+       <!-- Checkout Form Section -->
+<div id="checkout-form">
+    <h2>Checkout</h2>
+    <p>Fill in your details below to complete the purchase.</p>
+    <form action="/complete-order" method="POST">
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label for="shipping">Shipping Address:</label>
+        <input type="text" id="shipping" name="shipping" required>
+
+        <label for="payment">Payment Method:</label>
+        <select id="payment" name="payment">
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="mpesa">Mpesa</option>
+        </select>
+
+        <button type="submit">Complete Order</button>
+    </form>
+</div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="/logo.png" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> 170 Lower Kabete, Nairobi, Kenya</p>
+            <p><strong>Phone:</strong> +254 760 456 345</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+        </div>
+    </footer>
+    <script>
+        // Fetch user data when the page loads
+        window.onload = async function() {
+            try {
+                const response = await fetch('/api/get-user-details');
+                if (response.ok) {
+                    const user = await response.json();
+                    if (user.fullName) {
+                        document.getElementById('fullname').value = user.fullName;
+                    }
+                } else {
+                    console.error('Failed to retrieve user details:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching user details:', error);
+            }
+        };
+    </script>    
+</body>
+</html>

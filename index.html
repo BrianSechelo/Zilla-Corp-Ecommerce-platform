@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script>
+        window.onload = function () {
+          fetch('/session')
+            .then(response => response.json())
+            .then(data => {
+              if (data.loggedIn) {
+                // If logged in, change login to logout in the navbar
+                document.getElementById('loginLink').innerHTML = '<a href="/logout">Log out</a>';
+              } else {
+                document.getElementById('loginLink').innerHTML = '<a href="/login.html">Log in</a>';
+              }
+            })
+            .catch(error => console.error('Error:', error));
+        };
+      </script>      
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +33,7 @@
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li id="logoutLink"><a href="#" onclick="logout()">Logout</a></li>
                         <li id="lg-bag"><a href="Cart.html"><i class="far fa-shopping-bag"></i></a></li>
                         <a href="#" id="close"><i class=" far fa-times"></i></a>
                     </ul>

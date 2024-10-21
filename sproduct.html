@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Tech2etc Ecommerce Tutorial</title>
+    <title> ZillaCorp</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,6 +17,7 @@
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
                 <li id="lg-bag"><a href="Cart.html"><i class="far fa-shopping-bag"></i></a></li>
                 <a href="#" id="close"><i class="far fa-times"></i></a>
             </ul>
@@ -60,43 +61,7 @@
             <input type="number" value="1" id="quantity">
             <button class="normal" onclick="addToCart()">Add To Cart</button>
 
-            <script>
-                // Simulating adding products to the cart
-                function addToCart() {
-                    // Get selected size
-                    const selectedSize = document.getElementById('sizeSelect').value;
 
-                    // If size is not selected, alert the user and do not add to the cart
-                    if (!selectedSize) {
-                        alert('Please select a size before adding the product to the cart.');
-                        return; // Stop execution if size is not selected
-                    }
-
-                    const productName = document.querySelector('.single-pro-details h4').innerText;
-                    const productPrice = parseFloat(document.querySelector('.single-pro-details h2').innerText.replace('$', ''));
-                    const productQuantity = parseInt(document.getElementById('quantity').value);
-                    const productImage = document.querySelector('.single-pro-image img').src;
-
-                    const product = {
-                        name: productName,
-                        price: productPrice,
-                        quantity: productQuantity,
-                        size: selectedSize,
-                        image: productImage
-                    };
-
-                    // Get the existing cart from localStorage
-                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-                    // Add the new product to the cart
-                    cart.push(product);
-
-                    // Save the updated cart back to localStorage
-                    localStorage.setItem('cart', JSON.stringify(cart));
-
-                    alert('Product added to cart!');
-                }
-            </script>
 
             <h4>Product Details</h4>
             <span>The Gilden Ultra Cotton T-shirt is made from a substantial 6.0 oz. 
@@ -191,7 +156,8 @@
         Smallimg[3].onclick = function(){
             MainImg.src = Smallimg[3].src;
         }
-    </script>
+
+   </script>
 
     <script src="script.js"></script>
 </body>

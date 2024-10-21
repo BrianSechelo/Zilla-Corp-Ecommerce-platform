@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up | ZillaCorp</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,6 +23,7 @@
             </ul>
         </div>
     </section>
+
     <!-- Sign-Up Form Section -->
     <section id="sign-up" class="section-p1">
         <h2>Create Your Account</h2>
@@ -34,13 +36,19 @@
         
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
-        
+            <span id="emailError" style="color: red;"></span>
+
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-        
+            <div style="position: relative;">
+                <input type="password" id="password" name="password" required>
+                <i class="fa fa-eye" id="togglePassword" style="position: absolute; right: 10px; top: 10px; cursor: pointer;"></i>
+             </div>
+            <span id="passwordError" style="color: red;"></span>
+
             <label for="confirm_password">Confirm Password</label>
             <input type="password" id="confirm_password" name="confirm_password" required>
-        
+            <span id="confirmPasswordError" style="color: red;"></span>
+
             <button type="submit" class="normal">Sign Up</button>
         </form>        
     </section>
@@ -55,6 +63,64 @@
             <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
         </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script>
+        // Show/Hide Password
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.textContent = this.textContent === 'Show' ? 'Hide' : 'Show';
+        });
+
+        // Email Validation
+        function validateEmail(email) {
+            const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        // Password Validation
+        function validatePassword(password) {
+            // Must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 digit, and 1 special character
+            const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+            return re.test(String(password));
+        }
+
+        // Real-time validation for email
+        const emailInput = document.getElementById('email');
+        emailInput.addEventListener('input', function () {
+            const emailError = document.getElementById('emailError');
+            if (!validateEmail(emailInput.value)) {
+                emailError.textContent = 'Invalid email format';
+            } else {
+                emailError.textContent = '';
+            }
+        });
+
+        // Real-time validation for password
+        const passwordInput = document.getElementById('password');
+        passwordInput.addEventListener('input', function () {
+            const passwordError = document.getElementById('passwordError');
+            if (!validatePassword(passwordInput.value)) {
+                passwordError.textContent = 'Password must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 digit, and 1 special character.';
+            } else {
+                passwordError.textContent = '';
+            }
+        });
+
+        // Real-time validation for confirm password
+        const confirmPasswordInput = document.getElementById('confirm_password');
+        confirmPasswordInput.addEventListener('input', function () {
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                confirmPasswordError.textContent = 'Passwords do not match';
+            } else {
+                confirmPasswordError.textContent = '';
+            }
+        });
+
+    </script>
 </body>
 </html>

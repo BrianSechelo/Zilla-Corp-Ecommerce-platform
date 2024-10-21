@@ -1,4 +1,6 @@
 const express = require('express');
+const session = require('express-session');
+const PORT = 5000;
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = require('./models/User'); // Assuming the User model is defined
@@ -9,6 +11,27 @@ const path = require('path');
 // Middleware to parse form data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname)); 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+
+// Route for serving the login page
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set to true if using HTTPS
+  }));
+
+  // Example of user database simulation
+const users = {
+    'sechbrian123@gmail.com': { password: 'Topverbalist7' }
+  };
+
 
 // POST route for registration
 app.post('/register', async (req, res) => {
@@ -39,7 +62,7 @@ app.post('/register', async (req, res) => {
 
         await user.save();
         console.log('User registered successfully');
-        res.redirect('/login'); // Redirect to login page after successful registration
+        res.redirect('/login.html'); // Redirect to login page after successful registration
     } catch (error) {
         console.error('Error registering user:', error);
         res.status(500).send('Error registering user');
@@ -76,6 +99,62 @@ app.post('/login', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
+app.get('/session', (req, res) => {
+    if (req.session.user) {
+      res.json({ loggedIn: true });
+    } else {
+      res.json({ loggedIn: false });
+    }
+  });  
+
+  const userSchema = new mongoose.Schema({
+    username: String,
+    email: String,
+    password: String,
+    cart: [{
+      productId: String,
+      quantity: Number,
+      price: Number
+    }]
+  });
+  const User = mongoose.model('User', userSchema);
+  
+  // Route to update the user's cart on the server
+  app.post('/cart', async (req, res) => {
+      const { userId, cart } = req.body;
+      
+      try {
+          await User.updateOne({ _id: userId }, { cart });
+          res.status(200).send('Cart updated successfully');
+      } catch (error) {
+          res.status(500).send('Error updating cart');
+      }
+  });
+  
+  // Route to retrieve the user's cart when they log in
+  app.get('/cart/:userId', async (req, res) => {
+      try {
+          const user = await User.findById(req.params.userId);
+          res.status(200).json(user.cart);
+      } catch (error) {
+          res.status(500).send('Error fetching cart');
+      }
+  });
+
+  app.get('/api/get-user-details', (req, res) => {
+    if (req.session && req.session.user) {
+        // Assuming you store user information in session
+        const user = req.session.user;
+        res.json({
+            fullName: user.fullName,
+            email: user.email
+        });
+    } else {
+        res.status(401).json({ message: "Not logged in" });
+    }
+});
+
 // MongoDB connection
 /*
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -88,5 +167,5 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 mongoose.connect('mongodb://localhost:27017/zillacorp')
     .then(() => console.log('MongoDB connected'))
     .catch((error) => console.error('MongoDB connection error:', error));
-const PORT = process.env.PORT || 5000;
+PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
