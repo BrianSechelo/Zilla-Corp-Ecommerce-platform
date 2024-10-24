@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-const PORT = 5000;
+PORT = process.env.PORT || 8080;
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = require('./models/User'); // Assuming the User model is defined
@@ -29,7 +29,7 @@ app.use(session({
 
   // Example of user database simulation
 const users = {
-    'sechbrian123@gmail.com': { password: 'Topverbalist7' }
+    'sechbrian123@gmail.com': { password: 'A3AbA2gmQrjMsSLR' }
   };
 
 
@@ -118,7 +118,7 @@ app.get('/session', (req, res) => {
       price: Number
     }]
   });
-  const User = mongoose.model('User', userSchema);
+  const Userr = mongoose.model('Userr', userSchema);
   
   // Route to update the user's cart on the server
   app.post('/cart', async (req, res) => {
@@ -164,8 +164,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 */
-mongoose.connect('mongodb://localhost:27017/zillacorp')
+mongoose.connect('mongodb+srv://sechbrian123:A3AbA2gmQrjMsSLR@zilladb.y0xw7.mongodb.net/')
     .then(() => console.log('MongoDB connected'))
     .catch((error) => console.error('MongoDB connection error:', error));
-PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
