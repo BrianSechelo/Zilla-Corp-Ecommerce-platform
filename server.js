@@ -21,13 +21,13 @@ app.get('/login', (req, res) => {
 
 
 app.use(session({
-    secret: 'your_secret_key',
+    secret: 'my_secret_key',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false } // Set to true if using HTTPS
   }));
 
-  // Example of user database simulation
+  // user database simulation
 const users = {
     'sechbrian123@gmail.com': { password: 'A3AbA2gmQrjMsSLR' }
   };
